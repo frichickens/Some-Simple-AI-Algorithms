@@ -1,5 +1,7 @@
 # Some-Simple-AI-Algorithms
-- Some simple AI Algorithms created by Pygame
+- Some simple AI Algorithms created by Pygame.
+
+- It took me about a month for these projects (fully understand about these algorithms and adjust the code).
 
 - I have done 2 projects in grade 10:
 
