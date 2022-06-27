@@ -3,9 +3,9 @@
 
 - I have done 2 projects in grade 10:
 
-1. Clustering Algorithms:
+1. K-Means Algorithm:
 
-![image](https://user-images.githubusercontent.com/41814549/175980162-183666fc-ca8a-4b16-aa1e-225a9d3314c6.png)
+![image](https://user-images.githubusercontent.com/41814549/175980649-4d260e69-7bd5-47f4-8517-78082a9ed206.png)
 
 2. Support Vector Machines (SVM):
 
