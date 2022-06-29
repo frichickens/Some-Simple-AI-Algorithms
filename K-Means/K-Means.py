@@ -3,16 +3,14 @@ import numpy as np
 import random as rd
 import sys
 
+#data
 centroid=[]
-
 points=[]
 
 
 res = (950,600)
-
 pygame.init()
 pygame.font.init()
-
 screen = pygame.display.set_mode(res)
 
 
@@ -21,12 +19,10 @@ screen = pygame.display.set_mode(res)
 t = ((48, 213, 200)) 	# turquoise
 o = ((255, 165, 0)) 	# orange
 y = ((255, 204, 0))		# yellow
-
 w = ((255, 255, 255))	# white
 p = ((255, 192, 203))	# pink
 g = ((211, 211, 211))	# grey
 black = ((0, 0, 0))		# black
-
 r = ((255, 0, 0))		# red
 green = ((0, 255, 0)) 	# green
 blue = ((0, 0, 255))	# blue
@@ -44,7 +40,7 @@ while True:
 	screen.fill((127,127,127))
 
 
-
+	#get mouse pos
 	mouse_pos=(pygame.mouse.get_pos())
 	x_pos= mouse_pos[0]
 	y_pos= mouse_pos[1]
@@ -53,6 +49,7 @@ while True:
 	#right-hand area
 	pygame.draw.rect(screen,(black),(600,0,350,600))
 
+
 	#random points
 	pygame.draw.rect(screen,(y),(625,50,300,50))
 	screen.blit((word_font.render('Random Points', False, (0, 0, 0))),(670,55))
@@ -60,13 +57,13 @@ while True:
 	#centroids
 	pygame.draw.rect(screen,(y),(625,150,300,50))
 	screen.blit((word_font.render('Centroids: '+str(len(centroid)), False, (0, 0, 0))),(690,155))
-	#add
+	
 
+	#add
 	pygame.draw.rect(screen,(y),(700,230,50,50))
 	screen.blit((word_font.render('+', False, (0, 0, 0))),(717,230))
 	
 	#remove
-
 	pygame.draw.rect(screen,(y),(800,230,50,50))
 	screen.blit((word_font.render('-', False, (0, 0, 0))),(817,230))
 
@@ -74,6 +71,7 @@ while True:
 	#update
 	pygame.draw.rect(screen,(y),(650,350,250,50))
 	screen.blit((word_font.render('Update', False, (0, 0, 0))),(725,350))
+
 
 	#reset all
 	pygame.draw.rect(screen,(y),(650,500,250,50))
@@ -83,7 +81,8 @@ while True:
 	#sketch graph
 	screen.blit(zero_text,(75,500))
 
-	#oy
+
+	#sketch y-axis
 	pygame.draw.line(screen,(black),(100,50),(100,550),width=1)
 	for x in range(100,401,100):
 		screen.blit((number_font.render(str(x), False, (0, 0, 0))),(45,485-x))
@@ -95,7 +94,8 @@ while True:
 	pygame.draw.line(screen,(black),(550,50),(100,50),width=1)
 	pygame.draw.line(screen,(black),(550,500),(550,50),width=1)
 
-	#ox
+
+	#sketch x-axis
 	for x in range(100,401,100):
 		screen.blit((number_font.render(str(x), False, (0, 0, 0))),(x+85,515))
 	
@@ -104,6 +104,7 @@ while True:
 	pygame.draw.line(screen,(black),(300,485),(300,515),width=1)
 	pygame.draw.line(screen,(black),(400,485),(400,515),width=1)
 	pygame.draw.line(screen,(black),(500,485),(500,515),width=1)
+
 
 
 	#draw points
@@ -156,10 +157,12 @@ while True:
 					centroid = []
 					points = []
 
+			#right click
 			elif event.button == 3:
 				if 100<x_pos<550 and 50<y_pos<500:
 					centroid.append(mouse_pos)
 
-	pygame.display.flip()
 
+
+	pygame.display.flip()
 pygame.quit()
