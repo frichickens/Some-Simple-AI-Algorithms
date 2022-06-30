@@ -6,7 +6,7 @@ import sys
 #data
 centroid=[]
 points=[]
-
+update = 0
 
 res = (950,600)
 pygame.init()
@@ -35,8 +35,37 @@ number_font = pygame.font.SysFont('Comic Sans MS', 20)
 zero_text = zero_font.render('0', False, (0, 0, 0))
 word_font = pygame.font.SysFont('Comic Sans MS', 30)
 
+
+
+#using numpy to find the closest centroid for points
+#using numpy vector method
+#this is much more faster than for loop
+
+def closet_centroid(points,centroid):
+	
+	K = centroid.shape[0]
+	index = np.zeros((points.shape[0],1),dtype=np.int8)
+	for i in range(points.shape[0]):
+		distances = np.linalg.norm(points[i] - centroid, axis=1)
+		min_distances = np.argmin(distances)
+		index[i] = min_distances
+	return index
+
+
+#calculate new position of centroids = mean sum of all points assign to it
+
+def move_centroid(points, index, K):
+	n = points.shape[1]
+	centroids = np.zeros((K,n))
+	for k in range(K):
+		centroids[k,:]=np.mean(points[index.ravel()==k,:],axis=0)
+	return centroids
+
+
+
 while True:
-		
+
+
 	screen.fill((127,127,127))
 
 
@@ -108,14 +137,19 @@ while True:
 
 
 	#draw points
-	for x in points:
-		pygame.draw.circle(screen,black,x,7)
-		pygame.draw.circle(screen,w,x,5)
+	if update == 0:
+		for x in points:
+			pygame.draw.circle(screen,black,x,7)
+			pygame.draw.circle(screen,w,x,5)
+	else:
+		for i in range(len(points)):
+			pygame.draw.circle(screen,black,points[i],7)
+			pygame.draw.circle(screen,colors[int(index[i])],points[i],5)
 
 	#draw centroids
 	for x in range(len(centroid)):
-		pygame.draw.circle(screen,black,centroid[x],12)
-		pygame.draw.circle(screen,colors[int(x%7)],centroid[x],10)
+		pygame.draw.circle(screen,black,centroid[x],10)
+		pygame.draw.circle(screen,colors[int(x%7)],centroid[x],8)
 
 
 
@@ -130,35 +164,42 @@ while True:
 			#left click
 			if event.button ==1:
 				#add points
-				if 100<x_pos<550 and 50<y_pos<500:
+				if 100<x_pos<550 and 50<y_pos<500 and update == 0:
 					points.append(mouse_pos)
 
 				#random points
-				elif 625<x_pos<925 and 50<y_pos<100:
+				elif 625<x_pos<925 and 50<y_pos<100 and update == 0:
 					points = []
 					for x in range(0,rd.randint(1,20)):
 						points.append((rd.randint(125,500),rd.randint(75,475)))
 
 				#add/remove centroid
 				#add
-				elif 700<x_pos<750 and 230<y_pos<280:
+				elif 700<x_pos<750 and 230<y_pos<280 and update == 0:
 					centroid.append((rd.randint(125,500),rd.randint(75,475)))
 				
 				#remove
-				elif 800<x_pos<850 and 230<y_pos<280:
+				elif 800<x_pos<850 and 230<y_pos<280 and len(centroid)>0 and update == 0:
 					centroid.pop()
 
 				#update
 				elif 650<x_pos<900 and 350<y_pos<400:
-					print("Update")
+
+					centroid_numpy_array = np.array(centroid) 
+					points_numpy_array = np.array(points)
+					index = closet_centroid(points_numpy_array,centroid_numpy_array)
+					centroid = move_centroid(points_numpy_array,index,len(centroid))
+					update += 1
+
 
 				#reset all
 				elif 650<x_pos<900 and 500<y_pos<550:
+					update = 0
 					centroid = []
 					points = []
 
 			#right click
-			elif event.button == 3:
+			elif event.button == 3 and update == 0:
 				if 100<x_pos<550 and 50<y_pos<500:
 					centroid.append(mouse_pos)
 
