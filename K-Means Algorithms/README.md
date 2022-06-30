@@ -17,5 +17,5 @@ II. ABOUT THIS PROJECT:
 III. HOW TO USE MY PROGRAM:
 - Left click to add points or just click "Random Points".
 - Right click to add centroids or can randomly add by click "+" , remove the lastest centroid by using "-".
-- After having points and centroids click on "Update" and sometimes can be used multiple times.
+- After having points and centroids click on "Update" and sometimes it can be used multiple times.
 - If you want to start a new one just "Reset All" and start again.
