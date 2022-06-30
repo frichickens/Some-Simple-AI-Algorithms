@@ -5,6 +5,7 @@ I. ABOUT THIS ALGORITHM:
 II. ABOUT THIS PROJECT:
 - There are many libraries have already included this algorithm such as scikit-learn machine learning library.
 - But if you code it yourself  -->  more understanding, you won't have to rely on those libs anymore!
+- Download the .exe file to try it yourself! :D 
 - Some images:
 
 -Raw data:
