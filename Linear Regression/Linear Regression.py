@@ -61,15 +61,21 @@ def coefficients(points):
 
 #sketch_line
 #because pygame dont support sketching graph 
-#so i will calculate where the line cut x axis => decide how to sketch
+#so i will calculate where the line cut x axis and y axis => decide how to sketch the line
 
 def sketch_linear(a,b):
-	if(100<=(500-b)/a<=650):
-		pygame.draw.line(screen,(red),((75-b)/a,100),((525-b)/a,500),width=2)
+	if(100<=(100-b)/a<=650) and (100<=a*100+b<=500):
+		pygame.draw.line(screen,(red),(100,100*a+b),((100-b)/a,100),width=2)
+	elif(100<=(500-b)/a<=650) and (100<=a*100+b<=500):
+		pygame.draw.line(screen,(red),(100,100*a+b),((500-b)/a,500),width=2)
+	elif(100<=(500-b)/a<=650) and (100<=650*a+b<=500):
+		pygame.draw.line(screen,(red),(650,650*a+b),((500-b)/a,500),width=2)
+	elif(100<=(100-b)/a<=650) and (100<=650*a+b<=500):
+		pygame.draw.line(screen,(red),((100-b)/a,100),(650,650*a+b),width=2)
+	elif(100<=(100-b)/a<=650) and (100<=(500-b)/a<=650):
+		pygame.draw.line(screen,(red),((100-b)/a,100),((500-b)/a,500),width=2)
 	else:
-		pygame.draw.line(screen,(red),(75,75*a+b),(675,675*a+b),width=2)
-
-
+		pygame.draw.line(screen,(red),(100,100*a+b),(650,650*a+b),width=2)
 
 
 while True:
