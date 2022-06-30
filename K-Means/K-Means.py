@@ -30,6 +30,8 @@ blue = ((0, 0, 255))	# blue
 
 colors = [t,o,y,r,green,p,blue]
 
+
+#fonts
 zero_font = pygame.font.SysFont('Comic Sans MS', 30)
 number_font = pygame.font.SysFont('Comic Sans MS', 20)
 zero_text = zero_font.render('0', False, (0, 0, 0))
@@ -137,10 +139,15 @@ while True:
 
 
 	#draw points
+
+	#normal points
 	if update == 0:
+
 		for x in points:
 			pygame.draw.circle(screen,black,x,7)
 			pygame.draw.circle(screen,w,x,5)
+
+	#after updated
 	else:
 		for i in range(len(points)):
 			pygame.draw.circle(screen,black,points[i],7)
