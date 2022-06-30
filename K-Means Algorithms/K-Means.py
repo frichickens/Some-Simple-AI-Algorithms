@@ -211,6 +211,5 @@ while True:
 					centroid.append(mouse_pos)
 
 
-
 	pygame.display.flip()
 pygame.quit()
