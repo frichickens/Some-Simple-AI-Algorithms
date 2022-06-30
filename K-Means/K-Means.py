@@ -41,7 +41,7 @@ word_font = pygame.font.SysFont('Comic Sans MS', 30)
 
 #using numpy to find the closest centroid for points
 #using numpy vector method
-#this is much more faster than for loop
+#this is faster than using for loop
 
 def closet_centroid(points,centroid):
 	
