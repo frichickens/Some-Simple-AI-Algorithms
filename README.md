@@ -3,7 +3,7 @@
 
 - It took me about a month for these projects (fully understand about these algorithms and adjust the code).
 
-- I have done 2 projects in grade 10:
+- I have done 2 projects in grade 11:
 
 1. K-Means Algorithm:
 
